@@ -31,31 +31,32 @@ void MainWindow::on_pushButton_clicked()
     {
         seconds = intTemp;
         timer->start(1000);
-        //QTimer::
-        //QTimer::singleShot(intTemp, ui->label, &QWidget::hide);
     }
 
 }
 
 void MainWindow::slotTimerAlarm()
 {
-    /* Ежесекундно обновляем данные по текущему времени
-     * Перезапускать таймер не требуется
-     * */
+    // Ежесекундно обновляем данные по текущему времени
     int minutes = 0;
     int tempSeconds = 0;
 
     minutes = seconds / 60;
     tempSeconds = seconds % 60;
-    std::string stringTime = "0" + std::to_string(minutes) + ":" + std::to_string(tempSeconds);
-    const char *cstr = stringTime.c_str();
-    ui->label->setText(cstr);
+    QString stringTime = "0" + QString::number(minutes) + ":";
+    if (tempSeconds < 10)
+    {
+        stringTime += "0";
+    }
+    stringTime += QString::number(tempSeconds);
+    ui->label->setText(stringTime);
 
-    seconds -= 1;
 
     if (seconds == 0)
     {
         timer->stop();
-
+        disconnect(timer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm())); // доп
     }
+    seconds -= 1;
+
 }
