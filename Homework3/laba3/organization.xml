@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Organization>
+    <Department name="Отдел разработки">
+        <Position title="Руководитель отдела">
+            <Employee>
+                <name>Иван Иванов</name>
+                <experience>10 лет</experience>
+            </Employee>
+        </Position>
+        <Position title="Разработчики">
+            <Employee>
+                <name>Петр Петров</name>
+                <experience>5 лет</experience>
+            </Employee>
+            <Employee>
+                <name>Алексей Смирнов</name>
+                <experience>3 года</experience>
+            </Employee>
+        </Position>
+    </Department>
+    <Department name="Отдел маркетинга">
+        <Position title="Руководитель отдела">
+            <Employee>
+                <name>Мария Сидорова</name>
+                <experience>8 лет</experience>
+            </Employee>
+        </Position>
+        <Position title="Маркетологи">
+            <Employee>
+                <name>Анна Кузнецова</name>
+                <experience>4 года</experience>
+            </Employee>
+        </Position>
+    </Department>
+    <Department name="Отдел продаж">
+        <Position title="Руководитель отдела">
+            <Employee>
+                <name>Дмитрий Орлов</name>
+                <experience>7 лет</experience>
+            </Employee>
+        </Position>
+        <Position title="Менеджеры по продажам">
+            <Employee>
+                <name>Екатерина Белова</name>
+                <experience>6 лет</experience>
+            </Employee>
+            <Employee>
+                <name>Сергей Павлов</name>
+                <experience>2 года</experience>
+            </Employee>
+        </Position>
+    </Department>
+    <Department name="Отдел кадров">
+        <Position title="Руководитель отдела">
+            <Employee>
+                <name>Ольга Васильева</name>
+                <experience>9 лет</experience>
+            </Employee>
+        </Position>
+        <Position title="HR-специалисты">
+            <Employee>
+                <name>Игорь Захаров</name>
+                <experience>3 года</experience>
+            </Employee>
+        </Position>
+    </Department>
+</Organization>
