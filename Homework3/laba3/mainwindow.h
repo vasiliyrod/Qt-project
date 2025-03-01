@@ -18,11 +18,15 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     QStandardItemModel *model;
 
-    void loadXML(const QString &fileName);
-    void parseElement(const QDomElement &element, QStandardItem *parentItem);
+    void loadXML(const QString &fileName, bool is_del);
+    void parseElement(const QDomElement &element, QStandardItem *parentItem, bool is_del);
+
 };
 #endif // MAINWINDOW_H

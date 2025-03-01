@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     model = new QStandardItemModel(this);
     ui->treeView->setModel(model);
 
-    loadXML("organization.xml");
+    loadXML("organization.xml", 0);
 }
 
 MainWindow::~MainWindow()
@@ -20,7 +20,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::loadXML(const QString &fileName) {
+void MainWindow::loadXML(const QString &fileName, bool is_del = 0) {
     QFile file(fileName);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QMessageBox::critical(this, "Error", "Cannot open XML file");
@@ -44,10 +44,10 @@ void MainWindow::loadXML(const QString &fileName) {
     // Получаем корневой элемент модели
     QStandardItem *rootItem = model->invisibleRootItem();
 
-    parseElement(root, rootItem);
+    parseElement(root, rootItem, is_del);
 }
 
-void MainWindow::parseElement(const QDomElement &element, QStandardItem *parentItem) {
+void MainWindow::parseElement(const QDomElement &element, QStandardItem *parentItem, bool is_del) {
     QDomNode node = element.firstChild();
     while (!node.isNull()) {
         if (node.isElement()) {
@@ -69,9 +69,10 @@ void MainWindow::parseElement(const QDomElement &element, QStandardItem *parentI
                     }
                     childNode = childNode.nextSibling();
                 }
-
-                QStandardItem *item = new QStandardItem(employeeText);
-                parentItem->appendRow(item);
+                if (!(employeeText == "Алексей Смирнов (стаж: 3 года)" && is_del)) {
+                    QStandardItem *item = new QStandardItem(employeeText);
+                    parentItem->appendRow(item);
+                }
             } else {
                 // Если не <Employee>, то просто создаем узел
                 QString nodeText;
@@ -83,10 +84,16 @@ void MainWindow::parseElement(const QDomElement &element, QStandardItem *parentI
 
                 QStandardItem *item = new QStandardItem(nodeText);
                 parentItem->appendRow(item);
-                parseElement(childElement, item);
+                parseElement(childElement, item, is_del);
             }
         }
         node = node.nextSibling();
     }
+}
+
+
+void MainWindow::on_pushButton_clicked()
+{
+    loadXML("organization.xml", 1);
 }
 
